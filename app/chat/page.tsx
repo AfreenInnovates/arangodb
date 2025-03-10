@@ -38,19 +38,19 @@ export default function ChatPage() {
 
     setMessages((prev) => [...prev, { role: "user", content: userMessage }])
     setIsLoading(true)
-
+    console.log("Here")
     try {
-      const response = await fetch("/api/v1/chat", {
+      const response = await fetch("http://127.0.0.1:5000/api/v1/chat", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ user_input: userMessage }),
       })
-
+      console.log("Here1")
       const data = await response.json()
 
-      setMessages((prev) => [...prev, { role: "assistant", content: data.model_response }])
+      setMessages((prev) => [...prev, { role: "assistant", content: data.model_response.output }])
     } catch (error) {
       console.error("Error:", error)
       setMessages((prev) => [
