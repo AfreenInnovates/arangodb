@@ -50,7 +50,7 @@ export default function ChatPage() {
       console.log("Here1")
       const data = await response.json()
 
-      setMessages((prev) => [...prev, { role: "assistant", content: data.model_response.output }])
+      setMessages((prev) => [...prev, { role: "assistant", content: data.model_response }])
     } catch (error) {
       console.error("Error:", error)
       setMessages((prev) => [
